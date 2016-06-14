@@ -25,9 +25,9 @@ public class Person {
 	private String firstName;
 	private String lastName;
     private List<Phone> phones = new ArrayList<>();
-
+    
 	@Id
-	@GeneratedValue
+	@GeneratedValue()
 	public Long getId() {
 		return id;
 	}
