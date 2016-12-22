@@ -54,4 +54,8 @@ import javax.persistence.Table;
   public List<Phone> getPhones() {
     return phones;
   }
+
+  public void setPhones(List<Phone> phones) {
+      this.phones = phones;
+  }
 }
