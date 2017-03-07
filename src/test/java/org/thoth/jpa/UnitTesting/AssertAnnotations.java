@@ -47,7 +47,7 @@ public class AssertAnnotations {
       Class c, String fieldName, Class... annotationClasses) {
     try {
       assertAnnotations(
-        Arrays.asList(annotationClasses)
+          Arrays.asList(annotationClasses)
         , Arrays.asList(c.getDeclaredField(fieldName).getAnnotations())
       );
     } catch (NoSuchFieldException nsfe) {
