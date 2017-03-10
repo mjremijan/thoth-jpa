@@ -74,4 +74,22 @@ public class DerbyJdbcTest {
         ResultSet rs = stmt.executeQuery("select * from sys.sysschemas;");
     }
 
+
+    @Test
+    public void execute_multi_line_statement() throws Exception {
+        String driver = "org.apache.derby.jdbc.EmbeddedDriver";
+
+        String dbLocation
+            = String.format(".\\target\\junit\\DerbyJdbcTest\\%d.db", System.currentTimeMillis());
+
+        String connectionUrl
+            = String.format("jdbc:derby:%s;create=true;user=waytogo;password=ogotyaw", dbLocation);
+
+        Class.forName(driver);
+        Connection conn = DriverManager.getConnection(connectionUrl);
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select *\nfrom sys.sysaliases");
+        assertTrue(rs.next());
+    }
+
 }
