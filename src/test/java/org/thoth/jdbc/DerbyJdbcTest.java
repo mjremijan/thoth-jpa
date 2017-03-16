@@ -92,4 +92,41 @@ public class DerbyJdbcTest {
         assertTrue(rs.next());
     }
 
+    @Test
+    public void can_a_statement_have_an_ending_comment_NOPE() throws Exception {
+        String driver = "org.apache.derby.jdbc.EmbeddedDriver";
+
+        String dbLocation
+            = String.format(".\\target\\junit\\DerbyJdbcTest\\%d.db", System.currentTimeMillis());
+
+        String connectionUrl
+            = String.format("jdbc:derby:%s;create=true;user=waytogo;password=ogotyaw", dbLocation);
+
+        Class.forName(driver);
+        Connection conn = DriverManager.getConnection(connectionUrl);
+        Statement stmt = conn.createStatement();
+
+        expectedEx.expect(SQLSyntaxErrorException.class);
+        stmt.executeQuery("select from sys.sysaliases -- ending comment ");
+    }
+
+
+    @Test
+    public void can_a_statement_have_an_inline_comment_NOPE() throws Exception {
+        String driver = "org.apache.derby.jdbc.EmbeddedDriver";
+
+        String dbLocation
+            = String.format(".\\target\\junit\\DerbyJdbcTest\\%d.db", System.currentTimeMillis());
+
+        String connectionUrl
+            = String.format("jdbc:derby:%s;create=true;user=waytogo;password=ogotyaw", dbLocation);
+
+        Class.forName(driver);
+        Connection conn = DriverManager.getConnection(connectionUrl);
+        Statement stmt = conn.createStatement();
+
+        expectedEx.expect(SQLSyntaxErrorException.class);
+        stmt.executeQuery("select from \n -- cool comment \n sys.sysaliases ");
+    }
+
 }
