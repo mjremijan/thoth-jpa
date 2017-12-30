@@ -15,7 +15,6 @@
     <description>
         Research and Development project on Java Persistence API (JSR 338)
     </description>
-    <url>http://mjremijan.github.io/thoth-jpa</url>
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
